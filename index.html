@@ -134,6 +134,18 @@
     .post-card{flex:0 0 80%;scroll-snap-align:start;}
   }
 
+  /* BLOG DYNAMIC LOADING */
+  .blog-loading,
+  .blog-error{
+    grid-column:1 / -1;
+    text-align:center;
+    color:var(--ink-soft);
+    padding:40px 20px;
+    border:1px dashed var(--line);
+    border-radius:var(--radius);
+    background:var(--white);
+  }
+
   /* POLICY */
   .policy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
   .ring-num{--pct: calc(var(--i) / 5 * 100%);width:56px;height:56px;border-radius:50%;background:conic-gradient(var(--coral) var(--pct), var(--line) 0);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
@@ -333,39 +345,16 @@
       <div class="section-head reveal">
         <span class="eyebrow">Cẩm nang &amp; bài viết</span>
         <h2>Kiến thức mới nhất về mắt và tròng kính</h2>
-        <p>Lưới 3 cột trên máy tính, vuốt ngang mượt trên điện thoại — nội dung này sẽ tự cập nhật khi bạn đăng bài mới trên WordPress.</p>
+        <p>Những bài viết mới nhất được tự động cập nhật từ hệ thống Blog.</p>
       </div>
-      <div class="post-grid">
-        <article class="post-card reveal">
-          <a class="thumb" href="#"><img src="https://matkinhsaigonone.com/wp-content/uploads/2026/08/Trong-kinh-sieu-mong-chiet-suat-174-kodax-600x400.jpg" alt="Tròng kính chiết suất 1.74"></a>
-          <div class="body">
-            <span class="post-cat">Tròng kính</span>
-            <h3><a href="#">Nên chọn tròng kính chiết suất 1.74 của Hoya, Kodax, hay Chemi?</a></h3>
-            <p class="post-excerpt">So sánh nhanh 3 thương hiệu tròng kính 1.74 phổ biến nhất hiện nay.</p>
-            <p class="post-meta">2 ngày trước</p>
-            <a class="read-more" href="#">Đọc tiếp →</a>
-          </div>
-        </article>
-        <article class="post-card reveal">
-          <a class="thumb" href="#"><img src="https://matkinhsaigonone.com/wp-content/uploads/2026/08/kodak-600x400.jpg" alt="Bảng giá tròng kính Kodak"></a>
-          <div class="body">
-            <span class="post-cat">Bảng giá</span>
-            <h3><a href="#">Bảng giá tròng kính Kodax mới nhất 2026</a></h3>
-            <p class="post-excerpt">Cập nhật đầy đủ mức giá theo từng chiết suất và loại tròng.</p>
-            <p class="post-meta">3 ngày trước</p>
-            <a class="read-more" href="#">Đọc tiếp →</a>
-          </div>
-        </article>
-        <article class="post-card reveal">
-          <a class="thumb" href="#"><img src="https://matkinhsaigonone.com/wp-content/uploads/2026/07/trongkinhloancaobamsinh-600x400.jpg" alt="Loạn thị bẩm sinh cao"></a>
-          <div class="body">
-            <span class="post-cat">Cẩm nang đôi mắt</span>
-            <h3><a href="#">Loạn bẩm sinh cao và giá tròng kính loạn thị cao khác thế nào?</a></h3>
-            <p class="post-excerpt">Giải thích dễ hiểu về độ loạn trên 2.00D và chi phí cắt kính phù hợp.</p>
-            <p class="post-meta">2 tuần trước</p>
-            <a class="read-more" href="#">Đọc tiếp →</a>
-          </div>
-        </article>
+
+      <!-- CMS sẽ tự động đổ 6 bài viết mới nhất vào đây -->
+      <div id="latestBlogPosts" class="post-grid" aria-live="polite">
+        <div class="blog-loading">Đang tải bài viết...</div>
+      </div>
+
+      <div style="text-align:center;margin-top:32px;">
+        <a class="btn btn-outline" href="blog/">Xem tất cả bài viết →</a>
       </div>
     </div>
   </section>
@@ -441,18 +430,150 @@
 </footer>
 
 <script>
+  /* =========================
+     MENU MOBILE
+  ========================= */
   const toggle = document.getElementById('navToggle');
   const links = document.querySelector('nav.links');
-  toggle.addEventListener('click', () => {
-    const open = links.style.display === 'flex';
-    links.style.display = open ? 'none' : 'flex';
-    links.style.cssText += open ? '' : 'position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:20px 28px;border-bottom:1px solid #E9E6F5;gap:16px;';
-  });
+
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.cssText += open
+        ? ''
+        : 'position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:20px 28px;border-bottom:1px solid #E9E6F5;gap:16px;';
+    });
+  }
+
+  /* =========================
+     HIỆU ỨNG REVEAL
+  ========================= */
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  /* =========================
+     6 BÀI VIẾT MỚI NHẤT
+     Đọc trực tiếp từ CMS:
+     cms-data/posts.json
+  ========================= */
+  async function loadLatestBlogPosts() {
+    const container = document.getElementById('latestBlogPosts');
+    if (!container) return;
+
+    try {
+      const response = await fetch('cms-data/posts.json?v=' + Date.now(), {
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error('Không tải được cms-data/posts.json');
+      }
+
+      const posts = await response.json();
+
+      // Chỉ lấy bài đã xuất bản và sắp xếp mới nhất.
+      const latest = posts
+        .filter(post => String(post.status || 'draft').toLowerCase() === 'published')
+        .sort((a, b) => {
+          const dateA = new Date(a.updatedAt || a.createdAt || 0).getTime();
+          const dateB = new Date(b.updatedAt || b.createdAt || 0).getTime();
+          return dateB - dateA;
+        })
+        .slice(0, 6);
+
+      if (!latest.length) {
+        container.innerHTML = '<div class="blog-loading">Chưa có bài viết được xuất bản.</div>';
+        return;
+      }
+
+      container.innerHTML = latest.map(post => {
+        const title = escapeHtml(post.title || '');
+        const excerpt = escapeHtml(
+          post.excerpt || stripHtml(post.content || '').slice(0, 150) + '...'
+        );
+        const slug = encodeURIComponent(post.slug || '');
+        const category = escapeHtml(post.categoryName || post.category || 'Cẩm nang đôi mắt');
+        const image = post.featuredImage
+          ? `<img src="${escapeAttr(post.featuredImage)}" alt="${title}" loading="lazy">`
+          : '';
+
+        const date = formatBlogDate(post.updatedAt || post.createdAt);
+
+        return `
+          <article class="post-card reveal in">
+            <a class="thumb" href="blog/${slug}.html">
+              ${image}
+            </a>
+
+            <div class="body">
+              <span class="post-cat">${category}</span>
+
+              <h3>
+                <a href="blog/${slug}.html">${title}</a>
+              </h3>
+
+              <p class="post-excerpt">${excerpt}</p>
+
+              <p class="post-meta">${date}</p>
+
+              <a class="read-more" href="blog/${slug}.html">
+                Đọc tiếp →
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+    } catch (error) {
+      console.error('Blog:', error);
+
+      container.innerHTML = `
+        <div class="blog-error">
+          Không thể tải bài viết mới nhất.
+        </div>
+      `;
+    }
+  }
+
+  function formatBlogDate(value) {
+    if (!value) return '';
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+
+    return new Intl.DateTimeFormat('vi-VN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }).format(date);
+  }
+
+  function stripHtml(value) {
+    const div = document.createElement('div');
+    div.innerHTML = value;
+    return div.textContent || div.innerText || '';
+  }
+
+  function escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value == null ? '' : String(value);
+    return div.innerHTML;
+  }
+
+  function escapeAttr(value) {
+    return escapeHtml(value).replace(/"/g, '&quot;');
+  }
+
+  loadLatestBlogPosts();
 </script>
 
 </body>
