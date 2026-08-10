@@ -1,303 +1,459 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saigon One Eyewear | Tuyên Ngôn Phong Cách Mắt Kính Giới Trẻ</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Be Vietnam Pro -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Be Vietnam Pro', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#0f172a',
-                            accent: '#f43f5e', // Rose/Pink modern pop
-                            light: '#f8fafc'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saigon One Eyewear — Cửa hàng kính mắt uy tín tại TP.HCM</title>
+<meta name="description" content="Saigon One Eyewear chuyên kính cận, viễn, loạn, đa tròng, kính đổi màu, tròng kính siêu mỏng chiết suất 1.61, 1.67, 1.74 chính hãng. 178 Phan Đăng Lưu, Phú Nhuận, TP.HCM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20203A;
+    --ink-soft:#63637F;
+    --paper:#FFFFFF;
+    --paper-alt:#F5F3FF;
+    --white:#FFFFFF;
+    --coral:#FF6B5B;
+    --coral-soft:#FFE3DE;
+    --blue:#2FC1E0;
+    --blue-soft:#DDF6FC;
+    --yellow:#FFC845;
+    --yellow-soft:#FFF3D6;
+    --line:#E9E6F5;
+    --radius:20px;
+    --maxw:1180px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.eyebrow,.logo-word{font-family:'Be Vietnam Pro',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px;}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
+  .brand img{height:42px;width:auto;border-radius:12px;}
+  .brand-text{line-height:1.15;}
+  .logo-word{font-weight:800;font-size:1.02rem;letter-spacing:.02em;}
+  .brand-sub{font-size:.72rem;color:var(--ink-soft);letter-spacing:.03em;}
+  nav.links{display:flex;gap:28px;font-size:.92rem;font-weight:600;}
+  nav.links a{text-decoration:none;color:var(--ink-soft);transition:color .15s;}
+  nav.links a:hover{color:var(--coral);}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:var(--white);padding:11px 20px;border-radius:100px;font-weight:700;font-size:.88rem;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px rgba(255,107,91,.35);}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;}
+
+  /* HERO */
+  .hero{padding:64px 0 48px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+  .eyebrow{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:16px;}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral);display:inline-block;}
+  h1{font-size:clamp(2.1rem,4vw,3.3rem);font-weight:800;line-height:1.12;margin:0 0 20px;letter-spacing:-.01em;}
+  .hero p.lead{font-size:1.08rem;color:var(--ink-soft);max-width:52ch;margin:0 0 30px;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:100px;font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--coral);color:#fff;box-shadow:0 10px 24px rgba(255,107,91,.35);}
+  .btn-outline{border:2px solid var(--ink);color:var(--ink);}
+  .hero-note{font-size:.85rem;color:var(--ink-soft);}
+  .hero-note b{color:var(--ink);}
+
+  .hero-visual{position:relative;height:380px;display:flex;align-items:center;justify-content:center;}
+  .blob{position:absolute;border-radius:50%;}
+  .blob-1{width:270px;height:270px;background:linear-gradient(135deg,var(--coral),var(--yellow));top:0;left:6%;opacity:.9;}
+  .blob-2{width:210px;height:210px;background:var(--blue);opacity:.85;bottom:0;right:4%;}
+  .glasses-icon{position:relative;z-index:2;width:62%;max-width:260px;}
+  .float-chip{position:absolute;z-index:3;background:#fff;border-radius:100px;padding:9px 18px;font-weight:700;font-size:.92rem;color:var(--ink);box-shadow:0 12px 28px rgba(32,32,58,.16);font-family:'IBM Plex Mono',monospace;}
+  .chip-1{top:6%;left:-2%;}
+  .chip-2{bottom:10%;right:-4%;}
+  .chip-3{top:48%;left:66%;background:var(--ink);color:#fff;}
+
+  /* TRUST BAR */
+  .trustbar{background:linear-gradient(90deg,var(--coral),var(--blue));padding:22px 0;}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:.86rem;font-weight:700;color:#fff;}
+  .trust-item svg{flex-shrink:0;width:24px;height:24px;stroke:#fff;}
+
+  /* SECTION SHELL */
+  section{padding:80px 0;}
+  section.alt{background:var(--paper-alt);}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;margin:0 0 14px;letter-spacing:-.01em;}
+  .section-head p{color:var(--ink-soft);font-size:1.02rem;margin:0;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;}
+  .about-grid img{border-radius:var(--radius);box-shadow:0 20px 48px rgba(32,32,58,.16);}
+  .about-copy p{margin:0 0 16px;color:var(--ink-soft);}
+  .about-copy p b{color:var(--ink);}
+  .chip-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .chip{background:var(--paper-alt);border:1px solid var(--line);border-radius:100px;padding:8px 16px;font-size:.85rem;font-weight:600;color:var(--ink);}
+
+  /* PRODUCT CARDS */
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:transform .18s ease, box-shadow .18s ease;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(32,32,58,.1);}
+  .card .icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .card:nth-child(3n+1) .icon{background:var(--coral-soft);}
+  .card:nth-child(3n+2) .icon{background:var(--blue-soft);}
+  .card:nth-child(3n+3) .icon{background:var(--yellow-soft);}
+  .card .icon svg{width:22px;height:22px;stroke:var(--ink);}
+  .card h3{font-size:1.05rem;font-weight:700;margin:0 0 8px;}
+  .card p{font-size:.9rem;color:var(--ink-soft);margin:0;}
+
+  /* LENSES */
+  .lens-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:48px;}
+  .brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .brand-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+  .brand-card .name{font-weight:700;font-size:.98rem;margin-bottom:4px;}
+  .brand-card .origin{font-size:.78rem;color:var(--ink-soft);margin-bottom:10px;}
+  .brand-card .index{display:inline-block;font-size:.75rem;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:100px;}
+
+  /* BLOG / BÀI VIẾT MỚI — grid desktop, carousel mobile */
+  .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .post-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease;}
+  .post-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(32,32,58,.1);}
+  .post-card .thumb{aspect-ratio:4/3;overflow:hidden;background:var(--paper-alt);}
+  .post-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .post-card .body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .post-cat{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--coral);}
+  .post-card h3{font-size:1.02rem;font-weight:700;margin:0;line-height:1.35;}
+  .post-excerpt{font-size:.88rem;color:var(--ink-soft);margin:0;flex:1;}
+  .post-meta{font-size:.76rem;color:var(--ink-soft);margin-top:auto;}
+  .read-more{font-size:.85rem;font-weight:700;color:var(--blue);text-decoration:none;}
+  @media (max-width:760px){
+    .post-grid{display:flex;overflow-x:auto;gap:16px;padding:6px 6px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -6px;}
+    .post-card{flex:0 0 80%;scroll-snap-align:start;}
+  }
+
+  /* POLICY */
+  .policy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+  .ring-num{--pct: calc(var(--i) / 5 * 100%);width:56px;height:56px;border-radius:50%;background:conic-gradient(var(--coral) var(--pct), var(--line) 0);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .ring-num span{width:44px;height:44px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.95rem;color:var(--ink);}
+  .policy-item h3{font-size:.98rem;font-weight:700;margin:0 0 6px;}
+  .policy-item p{font-size:.86rem;color:var(--ink-soft);margin:0;}
+
+  /* WHY / STAFF */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .why-list{list-style:none;margin:0;padding:0;}
+  .why-list li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .why-list li:last-child{border-bottom:none;}
+  .why-list svg{flex-shrink:0;width:20px;height:20px;stroke:var(--coral);margin-top:3px;}
+  .why-list b{display:block;font-size:.96rem;margin-bottom:2px;}
+  .why-list span{font-size:.87rem;color:var(--ink-soft);}
+  .staff-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;gap:18px;align-items:flex-start;box-shadow:0 16px 40px rgba(32,32,58,.08);}
+  .staff-card img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+  .staff-card .name{font-weight:700;margin-bottom:2px;}
+  .staff-card .role{font-size:.8rem;color:var(--blue);font-weight:700;margin-bottom:10px;}
+  .staff-card p{margin:0;font-size:.9rem;color:var(--ink-soft);font-style:italic;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;}
+  .contact-info .row{display:flex;gap:14px;margin-bottom:20px;}
+  .contact-info .row svg{flex-shrink:0;width:22px;height:22px;stroke:var(--coral);margin-top:2px;}
+  .contact-info .row b{display:block;font-size:.95rem;margin-bottom:2px;}
+  .contact-info .row span, .contact-info .row a{font-size:.9rem;color:var(--ink-soft);text-decoration:none;}
+  .social-row{display:flex;gap:12px;margin-top:26px;}
+  .social-row a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .15s;}
+  .social-row a:hover{background:var(--coral);border-color:var(--coral);}
+  .social-row a:hover svg{stroke:#fff;}
+  .social-row svg{width:18px;height:18px;stroke:var(--ink);}
+  .map-frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 16px 40px rgba(32,32,58,.1);}
+  .map-frame iframe{width:100%;height:100%;min-height:340px;border:0;display:block;}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:rgba(255,255,255,.7);padding:36px 0;font-size:.85rem;}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer a{color:rgba(255,255,255,.9);text-decoration:none;}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}.reveal{transition:none;opacity:1;transform:none;}.btn:hover{transform:none;}}
+
+  @media (max-width:940px){
+    nav.links{display:none;}
+    .nav-toggle{display:block;}
+    .hero-grid,.about-grid,.why-grid,.contact-grid,.lens-top{grid-template-columns:1fr;}
+    .about-grid{gap:36px;}
+    .about-grid img{order:-1;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .brand-grid{grid-template-columns:repeat(2,1fr);}
+    .policy-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-visual{height:300px;}
+  }
+  @media (max-width:560px){
+    .trust-grid,.card-grid,.brand-grid,.policy-grid{grid-template-columns:1fr;}
+    .cta-row{flex-direction:column;align-items:stretch;}
+    .btn{justify-content:center;}
+    .float-chip{font-size:.8rem;padding:7px 14px;}
+  }
+</style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white">
+<body>
 
-    <!-- HEADER & NAVIGATION -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-2xl font-800 tracking-wider text-white flex items-center gap-2">
-                SAIGON ONE <span class="text-rose-500 text-sm bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">EYEWEAR</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
-                <a href="#about" class="hover:text-rose-500 transition-colors">Về Chúng Tôi</a>
-                <a href="#collections" class="hover:text-rose-500 transition-colors">Bộ Sưu Tập</a>
-                <a href="#vibe" class="hover:text-rose-500 transition-colors">Không Gian Vibe</a>
-                <a href="#reviews" class="hover:text-rose-500 transition-colors">Reviewers Nói Gì</a>
-            </nav>
-            <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-rose-600 hover:bg-rose-500 transition-all rounded-full shadow-lg shadow-rose-600/30">
-                Ghé Store Ngay
-            </a>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <img src="https://matkinhsaigonone.com/wp-content/uploads/2026/06/cropped-logo_shopsaigonone.png" alt="Logo Saigon One Eyewear">
+      <div class="brand-text">
+        <div class="logo-word">SAIGON ONE EYEWEAR</div>
+        <div class="brand-sub">Kính cận · viễn · loạn · đa tròng</div>
+      </div>
+    </a>
+    <nav class="links">
+      <a href="#about">Giới thiệu</a>
+      <a href="#blog">Bài viết</a>
+      <a href="#lenses">Tròng kính</a>
+      <a href="#policy">Cam kết</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+    <a class="nav-cta" href="tel:0973819928">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      0973 819 928
+    </a>
+    <button class="nav-toggle" aria-label="Mở menu" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Cửa hàng kính mắt uy tín tại TP.HCM</span>
+        <h1>Đo đúng độ. Cắt đúng kính.<br>Nhìn rõ cả ngày dài.</h1>
+        <p class="lead">Saigon One Eyewear chuyên kính cận, viễn, loạn, đa tròng và kính đổi màu — với tròng kính siêu mỏng chiết suất 1.61, 1.67, 1.74 từ các thương hiệu chính hãng: Hoya, Essilor, Kodak, Chemi, Element, Nottica.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="tel:0973819928">Gọi tư vấn ngay: 0973 819 928</a>
+          <a class="btn btn-outline" href="#lenses">Xem bảng giá tròng kính</a>
         </div>
-    </header>
+        <p class="hero-note"><b>Đo mắt miễn phí</b> · Tư vấn tận tâm · Bảo hành trọn đời kỹ thuật</p>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <svg class="glasses-icon" viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="20" width="70" height="55" rx="18" fill="#fff" stroke="#20203A" stroke-width="5"/>
+          <rect x="120" y="20" width="70" height="55" rx="18" fill="#fff" stroke="#20203A" stroke-width="5"/>
+          <path d="M80 42h40" stroke="#20203A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M10 42 0 36" stroke="#20203A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M190 42l10-6" stroke="#20203A" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span class="float-chip chip-1">1.61</span>
+        <span class="float-chip chip-2">1.67</span>
+        <span class="float-chip chip-3">1.74</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- HERO SECTION -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#f43f5e_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10 text-center">
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 mb-6 uppercase tracking-widest">
-                <i class="fa-solid fa-fire text-rose-500"></i> #1 Trending Eyewear for Gen Z
-            </span>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-800 tracking-tight text-white max-w-4xl mx-auto leading-tight mb-8">
-                Định Hình Góc Nhìn. <br class="hidden sm:inline">Khẳng Định <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-amber-400">Chất Riêng Bạn.</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 font-light">
-                Không chỉ là kính mắt, Saigon One Eyewear là tuyên ngôn thời trang của thế hệ trẻ Sài Thành. Cực chất, cực chill, chuẩn form dáng.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#collections" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-rose-600 hover:bg-rose-500 transition-all rounded-2xl shadow-xl shadow-rose-600/30 flex items-center justify-center gap-3">
-                    Khám Phá BST <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="#vibe" class="w-full sm:w-auto px-8 py-4 text-base font-semibold text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-all rounded-2xl flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-location-dot text-rose-500"></i> Xem Địa Chỉ Store
-                </a>
-            </div>
-            
-            <!-- Quick Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-20 pt-10 border-t border-slate-800/80 text-left">
-                <div>
-                    <h3 class="text-3xl font-800 text-white">500+</h3>
-                    <p class="text-sm text-slate-400 mt-1">Mẫu gọng kính độc quyền bắt trend</p>
-                </div>
-                <div>
-                    <h3 class="text-3xl font-800 text-white">100%</h3>
-                    <p class="text-sm text-slate-400 mt-1">Đo mắt chuẩn quốc tế miễn phí</p>
-                </div>
-                <div class="col-span-2 md:col-span-1">
-                    <h3 class="text-3xl font-800 text-white">50K+</h3>
-                    <p class="text-sm text-slate-400 mt-1">Khách hàng Gen Z tin chọn</p>
-                </div>
-            </div>
+  <div class="trustbar">
+    <div class="wrap trust-grid">
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Đo mắt &amp; tư vấn hoàn toàn miễn phí</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><path d="M22 4 12 14.01l-3-3"/></svg>Đổi kính trong 3–5 ngày, mọi lý do</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Giao toàn quốc — nhận hàng mới thanh toán</div>
+      <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Bảo hành trọn đời kỹ thuật</div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <img class="reveal" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhz4EPoBeZZNPxHAvwKRz2ac4zEJzfeEaya82sgv17ZBaiHOh4VgP--v2UXGr3dgclh9EWartJ8UWkOzwqOXirVGnuDQJQ0Ug7TgqGLDqvXo12Cow--A-7lPrTgwqugBUtijR5dTKoqzQ-SGxoQcU_veOXdTIK2QwZocUE5hMK4PJBAELAppkmp7rtr9g/s16000/286802214_5869615649722260_5888943248685257451_n.jpg" alt="Cửa hàng Saigon One Eyewear">
+      <div class="about-copy reveal">
+        <span class="eyebrow">Giới thiệu</span>
+        <h2>Một cửa hàng, một phương châm: lãi tối thiểu, lợi ích tối đa</h2>
+        <p>Đang tìm một <b>cửa hàng kính mắt uy tín</b> tại TP. Hồ Chí Minh để sở hữu cặp kính vừa ý? <b>Saigon One Eyewear</b> cung cấp đa dạng kính mắt chất lượng cao cùng đội ngũ tư vấn nhiệt tình, chuyên nghiệp, sẵn sàng đáp ứng mọi nhu cầu của khách hàng.</p>
+        <p>Chúng tôi giữ giá cả hợp lý bằng cách luôn đặt lợi ích khách hàng lên hàng đầu trong từng cặp kính — từ khâu đo mắt, tư vấn chọn tròng, đến lắp ráp và bảo hành.</p>
+        <div class="chip-list">
+          <span class="chip">Kính cận · viễn · loạn</span>
+          <span class="chip">Kính thời trang</span>
+          <span class="chip">Kính mát · kính râm</span>
+          <span class="chip">Kính đổi màu</span>
+          <span class="chip">Kính bảo hộ</span>
+          <span class="chip">Gọng kính đa chất liệu</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-24 bg-slate-900/50 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="text-rose-500 font-semibold uppercase tracking-wider text-sm">Về Saigon One Eyewear</span>
-                <h2 class="text-3xl sm:text-4xl font-800 text-white mt-3 mb-6 leading-snug">
-                    Nơi Thời Trang Gặp Gỡ Công Nghệ Đo Thị Lực Chính Xác.
-                </h2>
-                <p class="text-slate-400 leading-relaxed mb-6">
-                    Ra đời từ trái tim Sài Gòn, chúng tôi hiểu rằng chiếc kính không đơn thuần là thiết bị hỗ trợ thị lực, mà là món phụ kiện tối quan trọng định hình cá tính thời trang của bạn. 
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-500 shrink-0 mt-1">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white text-lg">Bắt Trend Cực Nhanh</h4>
-                            <p class="text-sm text-slate-400">Các mẫu gọng kính Y2K, vintage, minimal hay cyberpunk luôn cập nhật liên tục hàng tuần.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-500 shrink-0 mt-1">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white text-lg">Tròng Kính Chính Hãng 100%</h4>
-                            <p class="text-sm text-slate-400">Bảo vệ mắt tối ưu trước ánh sáng xanh, chống chói, chống UV từ các thương hiệu lớn.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="aspect-video lg:aspect-square rounded-3xl bg-gradient-to-tr from-rose-500/20 to-indigo-500/20 p-2 border border-slate-800 shadow-2xl relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-slate-900 flex items-center justify-center text-center p-8">
-                        <div>
-                            <i class="fa-solid fa-glasses text-6xl text-rose-500 mb-4 animate-bounce"></i>
-                            <h3 class="text-xl font-bold text-white">Trải Nghiệm Trực Quan & Sành Điệu</h3>
-                            <p class="text-sm text-slate-400 mt-2">Không gian mua sắm tự do thử kính, góc sống ảo cực nghệ dành riêng cho bạn trẻ.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section id="products" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Sản phẩm &amp; dịch vụ</span>
+        <h2>Đầy đủ những gì đôi mắt bạn cần</h2>
+        <p>Từ kính thuốc cho đến kính thời trang, mỗi sản phẩm đều được tư vấn theo đúng độ và khuôn mặt của bạn.</p>
+      </div>
+      <div class="card-grid">
+        <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Kính cận, viễn, loạn</h3><p>Đa dạng chiết suất và thương hiệu, giúp bạn chọn được chiếc kính phù hợp nhất với độ và nhu cầu sử dụng.</p></div>
+        <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M2 12h6M16 12h6M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"/></svg></div><h3>Kính đa tròng</h3><p>Giải pháp cho người vừa cận/viễn vừa lão, nhìn rõ nhiều khoảng cách chỉ trên một tròng kính.</p></div>
+        <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg></div><h3>Kính mát, kính râm</h3><p>Bảo vệ mắt khỏi tia UV và ánh nắng gay gắt, vẫn giữ tầm nhìn rõ ràng, an toàn khi di chuyển.</p></div>
+        <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 1 0 0-9 2.5 2.5 0 1 1 0-5 9 9 0 0 0 0-4z"/></svg></div><h3>Kính đổi màu</h3><p>Tự động thích ứng với điều kiện ánh sáng — tiện lợi cho cả trong nhà lẫn ngoài trời.</p></div>
+        <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Kính bảo hộ</h3><p>An toàn cho mắt khi làm việc, lái xe hoặc tham gia các hoạt động thể thao cường độ cao.</p></div>
+        <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg></div><h3>Gọng kính</h3><p>Kim loại, nhựa dẻo hay titan — đa dạng kiểu dáng phù hợp mọi khuôn mặt và phong cách.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lenses">
+    <div class="wrap">
+      <div class="lens-top">
+        <div class="reveal">
+          <span class="eyebrow">Bảng giá tròng kính</span>
+          <h2>Tròng kính siêu mỏng, chính hãng, đúng chiết suất</h2>
+          <p style="color:var(--ink-soft);margin-bottom:24px;">Mỗi độ cận, viễn, loạn phù hợp với một mức chiết suất khác nhau. Đội ngũ Saigon One Eyewear tư vấn đúng chiết suất để tròng kính vừa mỏng, vừa nhẹ, vừa đúng ngân sách của bạn.</p>
+          <a class="btn btn-primary" href="#contact">Nhận báo giá tròng kính</a>
         </div>
-    </section>
-
-    <!-- COLLECTIONS SECTION -->
-    <section id="collections" class="py-24 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-rose-500 font-semibold uppercase tracking-wider text-sm">Bộ Sưu Tập Hot</span>
-                <h2 class="text-3xl sm:text-4xl font-800 text-white mt-2">Bạn Thuộc Style Nào?</h2>
-                <p class="text-slate-400 mt-3">Lựa chọn phong cách phù hợp nhất với thần thái của bạn ngày hôm nay.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Item 1 -->
-                <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-rose-500/50 transition-all group">
-                    <div class="h-48 rounded-2xl bg-slate-800 flex items-center justify-center text-rose-400 mb-6 group-hover:scale-[1.02] transition-transform">
-                        <i class="fa-solid fa-moon text-4xl"></i>
-                    </div>
-                    <span class="text-xs font-semibold px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20">Y2K & Cyberpunk</span>
-                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Gọng Bản Lớn & Kim Loại Mảnh</h3>
-                    <p class="text-sm text-slate-400 mb-6">Dành cho các tín đồ streetwear, cá tính mạnh mẽ và thích sự khác biệt.</p>
-                    <a href="#contact" class="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 hover:text-rose-300">
-                        Xem chi tiết <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-rose-500/50 transition-all group">
-                    <div class="h-48 rounded-2xl bg-slate-800 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-[1.02] transition-transform">
-                        <i class="fa-solid fa-mug-hot text-4xl"></i>
-                    </div>
-                    <span class="text-xs font-semibold px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">Vintage & Classic</span>
-                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Gọng Tròn & Đồi Mồi Retro</h3>
-                    <p class="text-sm text-slate-400 mb-6">Hoài cổ nhưng không lỗi mốt, cực kỳ hợp cho vibe cafe, học tập và làm việc.</p>
-                    <a href="#contact" class="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 hover:text-rose-300">
-                        Xem chi tiết <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-rose-500/50 transition-all group">
-                    <div class="h-48 rounded-2xl bg-slate-800 flex items-center justify-center text-sky-400 mb-6 group-hover:scale-[1.02] transition-transform">
-                        <i class="fa-solid fa-laptop-code text-4xl"></i>
-                    </div>
-                    <span class="text-xs font-semibold px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">Smart Minimal</span>
-                    <h3 class="text-xl font-bold text-white mt-4 mb-2">Gọng Titan Siêu Nhẹ Chống Ánh Sáng Xanh</h3>
-                    <p class="text-sm text-slate-400 mb-6">Giải pháp hoàn hảo cho Gen Z cày deadline, học online hay lướt net cả ngày.</p>
-                    <a href="#contact" class="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 hover:text-rose-300">
-                        Xem chi tiết <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="brand-grid reveal">
+          <div class="brand-card"><div class="name">Hoya</div><div class="origin">Nhật Bản</div><span class="index mono">1.56 – 1.74</span></div>
+          <div class="brand-card"><div class="name">Essilor</div><div class="origin">Pháp</div><span class="index mono">1.56 – 1.67</span></div>
+          <div class="brand-card"><div class="name">Kodak</div><div class="origin">Mỹ</div><span class="index mono">1.56 – 1.74</span></div>
+          <div class="brand-card"><div class="name">Chemi</div><div class="origin">Hàn Quốc</div><span class="index mono">1.56 – 1.74</span></div>
+          <div class="brand-card"><div class="name">Element</div><div class="origin">Singapore</div><span class="index mono">1.56 – 1.67</span></div>
+          <div class="brand-card"><div class="name">Nottica</div><div class="origin">Ý</div><span class="index mono">1.56 – 1.61</span></div>
+          <div class="brand-card"><div class="name">Lucasta</div><div class="origin">Đổi màu · chống ánh sáng xanh</div><span class="index mono">1.56 – 1.61</span></div>
+          <div class="brand-card"><div class="name">Rocky DriveShield</div><div class="origin">Chuyên lái xe ngày &amp; đêm</div><span class="index mono">1.56 – 1.61</span></div>
+          <div class="brand-card"><div class="name">CK123</div><div class="origin">Đổi màu nhanh, chống chói</div><span class="index mono">1.56 – 1.61</span></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- VIBE / STORE SECTION -->
-    <section id="vibe" class="py-24 bg-slate-900/40 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="text-rose-500 font-semibold uppercase tracking-wider text-sm">Không Gian Trải Nghiệm</span>
-            <h2 class="text-3xl sm:text-4xl font-800 text-white mt-2 mb-6">Ghé Store, Check-in Liền Tay</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto mb-12">
-                Không gian thiết kế theo phong cách tối giản hiện đại với ánh sáng nghệ thuật. Đến Saigon One không chỉ để cắt kính mà còn để tậu những bức ảnh OOTD cực chất.
-            </p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="h-40 rounded-2xl bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-500 font-medium">Store Photo 1</div>
-                <div class="h-40 rounded-2xl bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-500 font-medium">Store Photo 2</div>
-                <div class="h-40 rounded-2xl bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-500 font-medium">Store Photo 3</div>
-                <div class="h-40 rounded-2xl bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-500 font-medium">Store Photo 4</div>
-            </div>
+  <!-- BÀI VIẾT MỚI NHẤT -->
+  <section id="blog" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cẩm nang &amp; bài viết</span>
+        <h2>Kiến thức mới nhất về mắt và tròng kính</h2>
+        <p>Lưới 3 cột trên máy tính, vuốt ngang mượt trên điện thoại — nội dung này sẽ tự cập nhật khi bạn đăng bài mới trên WordPress.</p>
+      </div>
+      <div class="post-grid">
+        <article class="post-card reveal">
+          <a class="thumb" href="#"><img src="https://matkinhsaigonone.com/wp-content/uploads/2026/08/Trong-kinh-sieu-mong-chiet-suat-174-kodax-600x400.jpg" alt="Tròng kính chiết suất 1.74"></a>
+          <div class="body">
+            <span class="post-cat">Tròng kính</span>
+            <h3><a href="#">Nên chọn tròng kính chiết suất 1.74 của Hoya, Kodax, hay Chemi?</a></h3>
+            <p class="post-excerpt">So sánh nhanh 3 thương hiệu tròng kính 1.74 phổ biến nhất hiện nay.</p>
+            <p class="post-meta">2 ngày trước</p>
+            <a class="read-more" href="#">Đọc tiếp →</a>
+          </div>
+        </article>
+        <article class="post-card reveal">
+          <a class="thumb" href="#"><img src="https://matkinhsaigonone.com/wp-content/uploads/2026/08/kodak-600x400.jpg" alt="Bảng giá tròng kính Kodak"></a>
+          <div class="body">
+            <span class="post-cat">Bảng giá</span>
+            <h3><a href="#">Bảng giá tròng kính Kodax mới nhất 2026</a></h3>
+            <p class="post-excerpt">Cập nhật đầy đủ mức giá theo từng chiết suất và loại tròng.</p>
+            <p class="post-meta">3 ngày trước</p>
+            <a class="read-more" href="#">Đọc tiếp →</a>
+          </div>
+        </article>
+        <article class="post-card reveal">
+          <a class="thumb" href="#"><img src="https://matkinhsaigonone.com/wp-content/uploads/2026/07/trongkinhloancaobamsinh-600x400.jpg" alt="Loạn thị bẩm sinh cao"></a>
+          <div class="body">
+            <span class="post-cat">Cẩm nang đôi mắt</span>
+            <h3><a href="#">Loạn bẩm sinh cao và giá tròng kính loạn thị cao khác thế nào?</a></h3>
+            <p class="post-excerpt">Giải thích dễ hiểu về độ loạn trên 2.00D và chi phí cắt kính phù hợp.</p>
+            <p class="post-meta">2 tuần trước</p>
+            <a class="read-more" href="#">Đọc tiếp →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="policy">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cam kết bán hàng</span>
+        <h2>5 chính sách xoá bỏ mọi nỗi lo khi mua kính</h2>
+      </div>
+      <div class="policy-grid">
+        <div class="policy-item reveal" style="--i:1"><div class="ring-num"><span>01</span></div><h3>Đổi kính linh hoạt</h3><p>Được đổi kính trong vòng 3–5 ngày với bất kỳ lý do nào.</p></div>
+        <div class="policy-item reveal" style="--i:2"><div class="ring-num"><span>02</span></div><h3>Nguồn gốc minh bạch</h3><p>Phân biệt rõ hàng chính hãng, xách tay, xuất khẩu ngay từ đầu.</p></div>
+        <div class="policy-item reveal" style="--i:3"><div class="ring-num"><span>03</span></div><h3>Giao hàng toàn quốc</h3><p>Miễn phí vận chuyển — chỉ thanh toán sau khi nhận hàng.</p></div>
+        <div class="policy-item reveal" style="--i:4"><div class="ring-num"><span>04</span></div><h3>Xem hàng tại nhà</h3><p>Không ưng ý, không mua — hoàn toàn không mất phí.</p></div>
+        <div class="policy-item reveal" style="--i:5"><div class="ring-num"><span>05</span></div><h3>Bảo hành trọn đời</h3><p>Đánh bóng làm mới, thay ve, ốc vít — miễn phí kỹ thuật lâu dài.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="alt">
+    <div class="wrap why-grid">
+      <div class="reveal">
+        <span class="eyebrow">Vì sao chọn Saigon One</span>
+        <h2>Con người đứng sau từng cặp kính</h2>
+        <ul class="why-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div><b>Đội ngũ tư vấn tận tâm</b><span>Lắng nghe nhu cầu thật, không tư vấn thừa, không ép giá.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><div><b>Kỹ thuật viên lành nghề</b><span>Lắp ráp chính xác, cẩn thận từng chi tiết trước khi giao kính.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Đo mắt miễn phí</b><span>Không thu phí đo khám, tư vấn chọn kính, chọn tròng.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><div><b>Giá cả cạnh tranh</b><span>Phương châm lãi tối thiểu — lợi ích khách hàng luôn ưu tiên hàng đầu.</span></div></li>
+        </ul>
+      </div>
+      <div class="staff-card reveal">
+        <img src="https://matkinhsaigonone.com/wp-content/uploads/2022/12/317619196_6404785016205318_3582824404302355597_n-1.jpg" alt="Anh Thư, tư vấn bán hàng Saigon One Eyewear">
+        <div>
+          <div class="name">Anh Thư</div>
+          <div class="role">Tư vấn bán hàng, chuyên môn</div>
+          <p>"Chào bạn! Mình luôn sẵn sàng tư vấn để bạn chọn được cặp kính vừa đúng độ, vừa hợp gu — cứ nhắn mình bất cứ lúc nào."</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- REVIEWS SECTION -->
-    <section id="reviews" class="py-24 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-rose-500 font-semibold uppercase tracking-wider text-sm">Feedback</span>
-                <h2 class="text-3xl sm:text-4xl font-800 text-white mt-2">Gen Z Nói Gì Về Chúng Tôi?</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl relative">
-                    <div class="text-amber-400 flex gap-1 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Kính nhẹ cực kỳ, mẫu mã thì đúng gu Y2K mình tìm kiếm bấy lâu. Nhân viên tư vấn nhiệt tình, đo mắt chuẩn xác không bị chóng mặt."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 font-bold flex items-center justify-center">H</div>
-                        <div>
-                            <h4 class="font-bold text-white text-sm">Hoàng Nam</h4>
-                            <p class="text-xs text-slate-400">Sinh viên ĐH Hoa Sen</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl relative">
-                    <div class="text-amber-400 flex gap-1 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Store xinh xỉu, góc nào cũng sống ảo được. Giá cả sinh viên mà chất lượng tròng kính chống ánh sáng xanh xịn đét. Sẽ ủng hộ dài dài!"</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 font-bold flex items-center justify-center">L</div>
-                        <div>
-                            <h4 class="font-bold text-white text-sm">Thảo Linh</h4>
-                            <p class="text-xs text-slate-400">Content Creator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl relative">
-                    <div class="text-amber-400 flex gap-1 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Cắt kính lấy ngay trong vòng 20 phút. Mấy anh chị kỹ thuật viên hướng dẫn tận tình cách bảo quản kính rất có tâm."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 font-bold flex items-center justify-center">M</div>
-                        <div>
-                            <h4 class="font-bold text-white text-sm">Minh Khôi</h4>
-                            <p class="text-xs text-slate-400">Designer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Liên hệ</span>
+        <h2>Ghé cửa hàng hoặc gọi cho chúng tôi</h2>
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><b>Địa chỉ</b><span>178 Phan Đăng Lưu, Phường Đức Nhuận, TP.HCM</span></div></div>
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><b>Hotline – Zalo</b><a href="tel:0973819928">0973 819 928</a></div></div>
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M8 4v4"/></svg><div><b>Giờ mở cửa</b><span>9:00 – 21:00 mỗi ngày</span></div></div>
+        <div class="social-row">
+          <a href="https://www.facebook.com/SaigonOneEyewear" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.tiktok.com/@saigonone_eyewear" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+          <a href="https://www.youtube.com/@MatKinhSaiGonOne" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg></a>
         </div>
-    </section>
+      </div>
+      <div class="map-frame reveal">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=178+Phan+%C4%90%C4%83ng+L%C6%B0u,+Ph%C3%BA+Nhu%E1%BA%ADn,+H%E1%BB%93+Ch%C3%AD+Minh&output=embed"
+          allowfullscreen title="Bản đồ Saigon One Eyewear"></iframe>
+      </div>
+    </div>
+  </section>
 
-    <!-- CONTACT & FOOTER SECTION -->
-    <footer id="contact" class="bg-slate-900 border-t border-slate-800 pt-20 pb-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
-            <div>
-                <a href="#" class="text-2xl font-800 tracking-wider text-white flex items-center gap-2 mb-4">
-                    SAIGON ONE <span class="text-rose-500 text-sm bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">EYEWEAR</span>
-                </a>
-                <p class="text-sm text-slate-400 mb-4">Hệ thống kính mắt thời trang chuyên nghiệp hàng đầu dành cho giới trẻ Sài Thành.</p>
-                <div class="flex gap-3 text-slate-400">
-                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-rose-600 hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-rose-600 hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-rose-600 hover:text-white transition-all"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-white text-base mb-4">Store Trải Nghiệm</h4>
-                <p class="text-sm text-slate-400 mb-2"><i class="fa-solid fa-location-dot text-rose-500 mr-2"></i> Quận 1 & Quận 10, TP. Hồ Chí Minh</p>
-                <p class="text-sm text-slate-400 mb-2"><i class="fa-solid fa-clock text-rose-500 mr-2"></i> 9:00 AM - 21:30 PM</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-white text-base mb-4">Dịch Vụ</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" class="hover:text-white transition-colors">Đo thị lực miễn phí</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Tư vấn gọng theo dáng mặt</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Bảo dưỡng & nắn chỉnh kính</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Cắt tròng kính chống ánh sáng xanh</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-white text-base mb-4">Nhận Voucher Giảm 20%</h4>
-                <p class="text-sm text-slate-400 mb-4">Đăng ký email để nhận mã giảm giá cho lần mua đầu tiên tại Store.</p>
-                <form class="flex flex-col gap-2" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận ưu đãi!');">
-                    <input type="email" placeholder="Email của bạn..." class="bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-rose-500" required>
-                    <button type="submit" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold text-sm py-2.5 rounded-xl transition-all shadow-md shadow-rose-600/20">Nhận Mã Ngay</button>
-                </form>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
-            &copy; 2026 Saigon One Eyewear. All rights reserved. Designed for Gen Z.
-        </div>
-    </footer>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 Saigon One Eyewear. Bảo lưu mọi quyền.</span>
+    <span><a href="tel:0973819928">0973 819 928</a> · <a href="#top">Về đầu trang ↑</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.querySelector('nav.links');
+  toggle.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:20px 28px;border-bottom:1px solid #E9E6F5;gap:16px;';
+  });
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
 
 </body>
 </html>
