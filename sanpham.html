@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalogue gọng kính | Saigon One Eyewear</title>
+<meta name="description" content="Catalogue gọng kính Saigon One Eyewear. Xem mẫu, mã sản phẩm và liên hệ tư vấn.">
+<style>
+:root{
+  --ink:#182033;
+  --muted:#68738a;
+  --line:#e8ebf1;
+  --soft:#f6f8fc;
+  --brand:#ff675c;
+  --brand-dark:#ed554b;
+  --blue:#2463eb;
+  --white:#fff;
+  --radius:20px;
+  --shadow:0 10px 35px rgba(20,30,55,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:#fff;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+.container{width:min(1180px,calc(100% - 32px));margin:auto}
+
+/* Header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px;letter-spacing:-.7px;
+}
+.logo-mark{color:var(--blue)}
+.nav{display:flex;align-items:center;gap:26px;color:#5e687d;font-weight:700;font-size:15px}
+.nav a:hover{color:var(--blue)}
+.contact-btn{
+  border:0;background:var(--brand);color:#fff;padding:12px 19px;border-radius:999px;font-weight:800;
+  box-shadow:0 8px 22px rgba(255,103,92,.22)
+}
+.contact-btn:hover{background:var(--brand-dark)}
+
+/* Hero */
+.hero{
+  background:linear-gradient(135deg,#f4f8ff 0%,#fff7f5 100%);
+  padding:70px 0 54px;
+}
+.eyebrow{
+  color:var(--blue);font-size:13px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:14px;
+}
+.hero h1{
+  margin:0;max-width:800px;font-size:clamp(38px,5vw,64px);line-height:1.02;letter-spacing:-2.8px;
+}
+.hero p{max-width:680px;color:#667189;font-size:18px;line-height:1.65;margin:20px 0 0}
+
+/* Toolbar */
+.catalogue{padding:42px 0 80px}
+.toolbar{
+  display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:24px;
+}
+.search{
+  position:relative;flex:1;min-width:260px;max-width:460px;
+}
+.search input{
+  width:100%;height:50px;border:1px solid var(--line);border-radius:14px;padding:0 18px 0 46px;
+  outline:none;background:#fff;box-shadow:0 4px 15px rgba(20,30,55,.04);
+}
+.search input:focus{border-color:#a9c2ff;box-shadow:0 0 0 4px rgba(36,99,235,.08)}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#8791a5}
+.count{color:var(--muted);font-size:14px;font-weight:700}
+.categories{
+  display:flex;gap:9px;overflow:auto;padding:3px 0 12px;margin-bottom:26px;
+  scrollbar-width:none;
+}
+.categories::-webkit-scrollbar{display:none}
+.category-btn{
+  white-space:nowrap;border:1px solid var(--line);background:#fff;color:#59647a;
+  border-radius:999px;padding:10px 16px;font-weight:750;
+}
+.category-btn:hover,.category-btn.active{
+  background:var(--ink);border-color:var(--ink);color:#fff;
+}
+
+/* Product grid */
+.product-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;
+}
+.product-card{
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#dce1ea}
+.product-image{
+  position:relative;aspect-ratio:1/1;background:#f7f8fa;overflow:hidden;cursor:pointer;
+}
+.product-image img{
+  width:100%;height:100%;object-fit:contain;display:block;
+  transition:transform .35s ease;
+}
+.product-card:hover .product-image img{transform:scale(1.035)}
+.no-image{
+  width:100%;height:100%;display:grid;place-items:center;color:#a0a8b7;font-size:14px;
+}
+.product-body{padding:16px}
+.product-code{
+  display:inline-flex;padding:5px 9px;background:#f1f5ff;color:var(--blue);
+  border-radius:8px;font-size:12px;font-weight:900;letter-spacing:.4px;margin-bottom:10px;
+}
+.product-name{
+  margin:0;font-size:17px;line-height:1.3;letter-spacing:-.3px;
+}
+.product-brand{margin:6px 0 0;color:var(--muted);font-size:14px}
+.product-cat{margin:10px 0 15px;color:#8992a4;font-size:12px}
+.ask-btn{
+  width:100%;border:0;background:var(--brand);color:#fff;border-radius:11px;padding:11px 12px;
+  font-weight:850;
+}
+.ask-btn:hover{background:var(--brand-dark)}
+.empty{
+  grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted);
+  border:1px dashed #d9dee8;border-radius:20px;
+}
+.loading{
+  grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);
+}
+
+/* Modal */
+.modal{
+  position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(10,16,30,.62);
+}
+.modal.open{display:flex}
+.modal-box{
+  width:min(900px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:24px;
+  position:relative;box-shadow:0 25px 80px rgba(0,0,0,.25);
+}
+.modal-close{
+  position:absolute;right:14px;top:14px;width:42px;height:42px;border:0;border-radius:50%;
+  background:#fff;font-size:25px;z-index:2;box-shadow:0 5px 18px rgba(0,0,0,.12)
+}
+.modal-content{display:grid;grid-template-columns:1.05fr .95fr}
+.modal-photo{background:#f7f8fa;min-height:420px;display:flex;align-items:center;justify-content:center}
+.modal-photo img{width:100%;height:100%;max-height:600px;object-fit:contain}
+.modal-info{padding:48px 38px}
+.modal-code{color:var(--blue);font-weight:900;font-size:13px;letter-spacing:1px}
+.modal-info h2{font-size:34px;line-height:1.08;margin:12px 0}
+.modal-brand{color:var(--muted);font-size:16px;margin-bottom:25px}
+.modal-ask{
+  display:inline-flex;justify-content:center;width:100%;background:var(--brand);color:#fff;
+  padding:14px 18px;border-radius:13px;font-weight:900
+}
+.modal-note{color:#8a93a4;font-size:13px;line-height:1.6;margin-top:13px}
+
+/* Footer */
+.footer{border-top:1px solid var(--line);padding:30px 0;color:#7b8496;font-size:14px}
+
+/* Mobile */
+@media(max-width:980px){
+  .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .container{width:min(100% - 24px,1180px)}
+  .header-inner{min-height:64px}
+  .nav{display:none}
+  .contact-btn{padding:10px 14px;font-size:13px}
+  .hero{padding:48px 0 40px}
+  .hero h1{letter-spacing:-1.8px}
+  .hero p{font-size:16px}
+  .catalogue{padding:28px 0 60px}
+  .toolbar{display:block}
+  .search{max-width:none}
+  .count{margin-top:12px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .product-card{border-radius:15px}
+  .product-body{padding:11px}
+  .product-code{font-size:10px;padding:4px 7px;margin-bottom:7px}
+  .product-name{font-size:14px}
+  .product-brand{font-size:12px}
+  .product-cat{font-size:10px;margin:7px 0 10px}
+  .ask-btn{font-size:12px;padding:9px 7px;border-radius:9px}
+  .modal-content{grid-template-columns:1fr}
+  .modal-photo{min-height:300px}
+  .modal-info{padding:28px 22px 25px}
+  .modal-info h2{font-size:27px}
+}
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="#">
+      <span>SAIGON ONE</span><span class="logo-mark">EYEWEAR</span>
+    </a>
+    <nav class="nav">
+      <a href="#">Trang chủ</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#catalogue">Gọng kính</a>
+    </nav>
+    <a class="contact-btn" href="https://zalo.me/0973819928" target="_blank" rel="noopener">💬 Tư vấn</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Saigon One Eyewear · Catalogue</div>
+    <h1>Bộ sưu tập gọng kính</h1>
+    <p>Khám phá các mẫu gọng kính mới nhất. Chọn mẫu bạn thích, xem mã sản phẩm và nhắn tin để được tư vấn.</p>
+  </div>
+</section>
+
+<main id="catalogue" class="catalogue">
+  <div class="container">
+    <div class="toolbar">
+      <div class="search">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" type="search" placeholder="Tìm theo mã, tên hoặc thương hiệu...">
+      </div>
+      <div id="count" class="count">Đang tải sản phẩm...</div>
+    </div>
+
+    <div id="categories" class="categories"></div>
+    <div id="productGrid" class="product-grid">
+      <div class="loading">Đang tải catalogue...</div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">© Saigon One Eyewear · Catalogue sản phẩm</div>
+</footer>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Đóng">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const API = 'https://sanpham.matkinhsaigonone.com/wp/wp-json/wp/v2/products';
+const ZALO_NUMBER = '0973819928';
+
+let allProducts = [];
+let currentCategory = 'all';
+
+const grid = document.getElementById('productGrid');
+const categoriesEl = document.getElementById('categories');
+const countEl = document.getElementById('count');
+const searchInput = document.getElementById('searchInput');
+const modal = document.getElementById('modal');
+const modalContent = document.getElementById('modalContent');
+
+function cleanText(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html || '';
+  return div.textContent.trim();
+}
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+  }[char]));
+}
+
+function getCategoryNames(product) {
+  return Array.isArray(product.categories_data)
+    ? product.categories_data.map(x => x.name)
+    : [];
+}
+
+function renderCategories() {
+  const names = [...new Set(
+    allProducts.flatMap(getCategoryNames)
+  )].sort((a,b) => a.localeCompare(b,'vi'));
+
+  categoriesEl.innerHTML = `
+    <button class="category-btn active" data-category="all">Tất cả</button>
+    ${names.map(name => `
+      <button class="category-btn" data-category="${escapeHTML(name)}">${escapeHTML(name)}</button>
+    `).join('')}
+  `;
+
+  categoriesEl.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentCategory = btn.dataset.category;
+      categoriesEl.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    });
+  });
+}
+
+function filteredProducts() {
+  const q = searchInput.value.trim().toLowerCase();
+
+  return allProducts.filter(product => {
+    const cats = getCategoryNames(product);
+    const categoryOK = currentCategory === 'all' || cats.includes(currentCategory);
+
+    const haystack = [
+      cleanText(product.title?.rendered),
+      product.product_code,
+      product.brand,
+      ...cats
+    ].join(' ').toLowerCase();
+
+    return categoryOK && (!q || haystack.includes(q));
+  });
+}
+
+function renderProducts() {
+  const products = filteredProducts();
+  countEl.textContent = `${products.length} mẫu`;
+
+  if (!products.length) {
+    grid.innerHTML = `
+      <div class="empty">
+        <div style="font-size:34px;margin-bottom:8px">🔎</div>
+        Không tìm thấy mẫu phù hợp.
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = products.map((product, index) => {
+    const title = cleanText(product.title?.rendered) || 'Sản phẩm';
+    const code = product.product_code || 'Chưa có mã';
+    const brand = product.brand || '';
+    const image = product.image || '';
+    const cats = getCategoryNames(product);
+
+    return `
+      <article class="product-card">
+        <div class="product-image" data-index="${index}" tabindex="0">
+          ${image
+            ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(title)}" loading="lazy">`
+            : `<div class="no-image">Chưa có ảnh</div>`}
+        </div>
+        <div class="product-body">
+          <div class="product-code">${escapeHTML(code)}</div>
+          <h2 class="product-name">${escapeHTML(title)}</h2>
+          ${brand ? `<div class="product-brand">${escapeHTML(brand)}</div>` : ''}
+          ${cats.length ? `<div class="product-cat">${escapeHTML(cats.join(' · '))}</div>` : ''}
+          <button class="ask-btn" data-index="${index}">💬 Hỏi mẫu này</button>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  // index trong filteredProducts để mở đúng sản phẩm
+  const shown = products;
+  grid.querySelectorAll('.product-image').forEach((el,i) => {
+    el.addEventListener('click', () => openProduct(shown[i]));
+    el.addEventListener('keydown', e => {
+      if(e.key === 'Enter') openProduct(shown[i]);
+    });
+  });
+  grid.querySelectorAll('.ask-btn').forEach((btn,i) => {
+    btn.addEventListener('click', () => openProduct(shown[i], true));
+  });
+}
+
+function openProduct(product, focusChat=false) {
+  const title = cleanText(product.title?.rendered) || 'Sản phẩm';
+  const code = product.product_code || '';
+  const brand = product.brand || '';
+  const image = product.image || '';
+  const cats = getCategoryNames(product);
+
+  const message = encodeURIComponent(
+    `Xin chào, tôi muốn hỏi mẫu ${code || title} của Saigon One Eyewear.`
+  );
+  const zaloUrl = `https://zalo.me/${ZALO_NUMBER}`;
+
+  modalContent.innerHTML = `
+    <div class="modal-content">
+      <div class="modal-photo">
+        ${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(title)}">` : '<div class="no-image">Chưa có ảnh</div>'}
+      </div>
+      <div class="modal-info">
+        ${code ? `<div class="modal-code">${escapeHTML(code)}</div>` : ''}
+        <h2>${escapeHTML(title)}</h2>
+        ${brand ? `<div class="modal-brand">${escapeHTML(brand)}</div>` : ''}
+        ${cats.length ? `<div class="product-cat">${escapeHTML(cats.join(' · '))}</div>` : ''}
+        <a class="modal-ask" href="${zaloUrl}" target="_blank" rel="noopener">
+          💬 Hỏi mẫu ${escapeHTML(code || '')}
+        </a>
+        <div class="modal-note">
+          Bạn chỉ cần gửi mã sản phẩm khi nhắn tin. Nhân viên sẽ tư vấn giá, màu sắc và tình trạng mẫu.
+        </div>
+      </div>
+    </div>
+  `;
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+
+  if (focusChat) {
+    setTimeout(() => modal.querySelector('.modal-ask')?.focus(), 50);
+  }
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+}
+
+document.querySelector('.modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => {
+  if(e.target === modal) closeModal();
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeModal();
+});
+searchInput.addEventListener('input', renderProducts);
+
+async function loadProducts() {
+  try {
+    const response = await fetch(`${API}?per_page=100&orderby=date&order=desc`);
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    allProducts = await response.json();
+
+    renderCategories();
+    renderProducts();
+  } catch (error) {
+    console.error(error);
+    countEl.textContent = '';
+    grid.innerHTML = `
+      <div class="empty">
+        <strong>Không tải được catalogue.</strong>
+        <p style="margin:8px 0 0">Hãy kiểm tra API WordPress hoặc quyền CORS của website.</p>
+      </div>`;
+  }
+}
+
+loadProducts();
+</script>
+</body>
+</html>
