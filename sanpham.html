@@ -252,7 +252,7 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
-const API = 'https://sanpham.matkinhsaigonone.com/wp/wp-json/wp/v2/products';
+const API = 'https://matkinhsaigonone.com/wp-json/wp/v2/products';
 const ZALO_NUMBER = '0973819928';
 
 let allProducts = [];
@@ -430,21 +430,56 @@ searchInput.addEventListener('input', renderProducts);
 
 async function loadProducts() {
   try {
-    const response = await fetch(`${API}?per_page=100&orderby=date&order=desc`);
+    const perPage = 100;
+    let page = 1;
+    let products = [];
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    // WordPress REST API giới hạn số bài mỗi trang.
+    // Đọc lần lượt các trang để catalogue có thể dùng cả khi có hàng trăm mẫu.
+    while (true) {
+      const response = await fetch(
+        `${API}?per_page=${perPage}&page=${page}&orderby=date&order=desc`,
+        { headers: { 'Accept': 'application/json' } }
+      );
 
-    allProducts = await response.json();
+      if (!response.ok) {
+        throw new Error(`API HTTP ${response.status}`);
+      }
+
+      const batch = await response.json();
+
+      if (!Array.isArray(batch)) {
+        throw new Error('API không trả về danh sách sản phẩm');
+      }
+
+      products = products.concat(batch);
+
+      const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10);
+
+      if (page >= totalPages || batch.length < perPage) break;
+
+      page++;
+    }
+
+    allProducts = products;
 
     renderCategories();
     renderProducts();
+
   } catch (error) {
-    console.error(error);
+    console.error('Catalogue API error:', error);
     countEl.textContent = '';
     grid.innerHTML = `
       <div class="empty">
+        <div style="font-size:34px;margin-bottom:8px">⚠️</div>
         <strong>Không tải được catalogue.</strong>
-        <p style="margin:8px 0 0">Hãy kiểm tra API WordPress hoặc quyền CORS của website.</p>
+        <p style="margin:8px 0 0">
+          Không thể kết nối tới WordPress REST API.<br>
+          API đang dùng:
+        </p>
+        <code style="display:inline-block;margin-top:8px;padding:8px 10px;background:#f3f5f8;border-radius:8px;font-size:12px;word-break:break-all">
+          ${escapeHTML(API)}
+        </code>
       </div>`;
   }
 }
